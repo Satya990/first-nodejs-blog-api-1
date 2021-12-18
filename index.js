@@ -62,10 +62,8 @@ app.get('/posts', function(req, res) {
 // 2. Create API to update a Post
 // 3. Create API to delete a Post
 
-//Created Api to get details of a post using its id as an query parameter
-app.get('/post',function(req,res){
-  // console.log(req);
-  // res.status(200).send({text:"Hello"});
+//Api to get details of a post
+app.get('/post',function(req,res)
   Post.find({id:req.params.id},function(error,post){
       if(error){
         res.status(422).send({error: 'unable to find post'});
@@ -75,7 +73,7 @@ app.get('/post',function(req,res){
       }
   });
 });
-//Created Api to  update a Post using its id as an parameter
+//Api to  update a Post 
 app.post('/updatePost',function(req,res){
   Post.findOneAndUpdate({id:req.params.id},{author:req.body.author, title : req.body.title, content : req.body.content},function(error,newpost){
     if(error){
@@ -86,7 +84,7 @@ app.post('/updatePost',function(req,res){
     }
   })
 });
-//Created Api to delete a Post using its id as an parameter
+//Api to delete a Post
 app.delete('/deletePost',function(req,res){
   Post.findOneAndDelete({id:req.params.id},function(error,deletedPost){
     if(error){
